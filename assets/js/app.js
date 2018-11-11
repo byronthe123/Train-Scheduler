@@ -90,6 +90,7 @@ const appendTrainHTML = (train) => {
             <td>${train.frequency}</td>
             <td><span class='transition'>${train.nextArrival}</span></td>
             <td><span class='transition'>${train.minTillNexTrain}</span></td>
+            <td> class='fas fa-sync-alt'></td>
             <td class="far fa-trash-alt" id='${train.id}'></td>
         </tr> 
     `);
