@@ -145,7 +145,7 @@ const manuallyUpdate = (id) => {
                 <td>${updatedTrain.frequency}</td>
                 <td><span class='transition'>${updatedTrain.nextArrival}</span></td>
                 <td><span class='transition'>${updatedTrain.minTillNexTrain}</span></td>
-                <td class="fas fa-sync-alt"></td>
+                <td class="fas fa-sync-alt">&nbsp</td>
                 <td class="far fa-trash-alt" id='${updatedTrain.id}'></td>
             </tr> 
         `);

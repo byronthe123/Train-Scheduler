@@ -24,7 +24,8 @@
     cursor: pointer;
 }
 
-.far.fa-trash-alt:hover {
+.far.fa-trash-alt:hover, 
+.far.fa-sync-alt:hover {
     cursor: pointer;
 }
 
