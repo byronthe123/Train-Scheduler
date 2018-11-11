@@ -1,6 +1,4 @@
-console.log(`v. 9::20 PM`);  
-  
-// Initialize Firebase
+  // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCk7T3d2TR7YhHywrqwmUOeG83x3sm70zM",
     authDomain: "train-scheduler2-9b38e.firebaseapp.com",
@@ -78,7 +76,7 @@ const readFromDB = () => {
         let sv = snapshot.val();
         let train = objFromDBSnapshotVal(sv);
         appendTrainHTML(train);
-        console.log('working');
+        // console.log('working');
     })
 }
 
@@ -90,7 +88,6 @@ const appendTrainHTML = (train) => {
             <td>${train.frequency}</td>
             <td><span class='transition'>${train.nextArrival}</span></td>
             <td><span class='transition'>${train.minTillNexTrain}</span></td>
-            <td class="fas fa-sync-alt"></td>
             <td class="far fa-trash-alt" id='${train.id}'></td>
         </tr> 
     `);
@@ -107,22 +104,22 @@ const objFromDBSnapshotVal = (snapshotVal) => {
 const deleteFromDB = (id) => {
     //https://stackoverflow.com/questions/40441625/firebase-remove-node-based-on-child-value
     db.ref().on('child_added', (snapshot) => {
-        console.log(db.ref('-LQWWTynWCUv_DIjKTaB/db_train'));
-        console.log(snapshot);
-        console.log(snapshot.ref.path.pieces_[0]);
-        console.log(snapshot.val());
+        // console.log(db.ref('-LQWWTynWCUv_DIjKTaB/db_train'));
+        // console.log(snapshot);
+        // console.log(snapshot.ref.path.pieces_[0]);
+        // console.log(snapshot.val());
 
         let sv = snapshot.val();
         // let train = objFromDBSnapshotVal(sv);
-        console.log(sv.db_train.id);
+        // console.log(sv.db_train.id);
         if(sv.db_train.id === id) {
-            console.log(`ID: ${sv.db_train.id} detected`);
+            // console.log(`ID: ${sv.db_train.id} detected`);
             // let remove = db.ref(snapshot.Ce.path.n[0]);
             let remove = db.ref(snapshot.ref.path.pieces_[0]);
             remove.remove().then(function(){
-                console.log('remove successful');
+                // console.log('remove successful');
             }).catch(function(error){
-                console.log('Custom error');
+                // console.log('Custom error');
             })
         }
     })
@@ -135,7 +132,7 @@ const manuallyUpdate = (id) => {
         let sv = snapshot.val();
         // let train = objFromDBSnapshotVal(sv);
         if(sv.db_train.id === id) {
-            console.log(`ID: ${sv.db_train.id} detected`);
+            // console.log(`ID: ${sv.db_train.id} detected`);
             // let remove = db.ref(snapshot.Ce.path.n[0]);
             let updatedTrain = new Train(sv.db_train.name, sv.db_train.destination, sv.db_train.firstTrainTime, sv.db_train.frequency);
             let updatedTr = $(`
@@ -145,7 +142,6 @@ const manuallyUpdate = (id) => {
                 <td>${updatedTrain.frequency}</td>
                 <td><span class='transition'>${updatedTrain.nextArrival}</span></td>
                 <td><span class='transition'>${updatedTrain.minTillNexTrain}</span></td>
-                <td class="fas fa-sync-alt">&nbsp</td>
                 <td class="far fa-trash-alt" id='${updatedTrain.id}'></td>
             </tr> 
         `);
@@ -163,13 +159,13 @@ const validateFirstTrainTime = (firstTrainTime, frequency) => {
         for(let i = 0; i < textArr.length; i++) {
             if(textArr[i].length === 2) {
                 for(let j = 0; j < textArr[i].length; j++) {
-                    console.log(textArr[i][j]);
+                    // console.log(textArr[i][j]);
                     if(typeof(parseInt(textArr[i][j])) !== 'number'){
                         return false;
                     } else {
                         let testTrain = new Train('', '', firstTrainTime, frequency);
-                        console.log(testTrain.minTillNexTrain);
-                        console.log(typeof(testTrain.minTillNexTrain));
+                        // console.log(testTrain.minTillNexTrain);
+                        // console.log(typeof(testTrain.minTillNexTrain));
                         if(testTrain.minTillNexTrain >= 0) {
                             return true;
                         }
@@ -194,6 +190,11 @@ const runTimer = () => {
 
 const timer = () => {
     readFromDB();
+}
+
+const clearForm = () => {
+    $('form').find("input[type=text], textarea").val("");
+    $('form').find("input[type=number], textarea").val("");
 }
 
 //START PROGRAM:
@@ -221,6 +222,8 @@ $('#btn_submit').on('click', function(e){
             });
     
             readFromDB();
+
+            clearForm();
     
         } else {
             alert(`Invalid time format - please enter all input in the following format: HH:mm.\nExample: 01:23 or 22:45\nTime values cannot exceed 24:00.`);
