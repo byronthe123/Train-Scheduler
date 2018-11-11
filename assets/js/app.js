@@ -110,7 +110,7 @@ const deleteFromDB = (id) => {
         console.log(snapshot);
         console.log(snapshot.ref.path.pieces_[0]);
         console.log(snapshot.val());
-        
+
         let sv = snapshot.val();
         // let train = objFromDBSnapshotVal(sv);
         console.log(sv.db_train.id);
@@ -144,6 +144,7 @@ const manuallyUpdate = (id) => {
                 <td>${updatedTrain.frequency}</td>
                 <td><span class='transition'>${updatedTrain.nextArrival}</span></td>
                 <td><span class='transition'>${updatedTrain.minTillNexTrain}</span></td>
+                <td> class='fas fa-sync-alt'></td>
                 <td class="far fa-trash-alt" id='${updatedTrain.id}'></td>
             </tr> 
         `);
@@ -239,7 +240,7 @@ $(document).on('click', '.fa-trash-alt', function() {
 });
 
 //Click Update Button:
-$(document).on('click', '.fa-trash-alt', function() {
+$(document).on('click', '.fa-sync-alt', function() {
     let id = ($(this).parent().prevObject[0].id);
     manuallyUpdate(id);
 });
