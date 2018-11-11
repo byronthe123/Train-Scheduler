@@ -36,17 +36,17 @@ const db = firebase.database();
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
-    if(window.location.href === 'https://byronthe123.github.io/random_12347/index.html' || window.location.href === 'https://byronthe123.github.io/random_12347/') {
+    if(window.location.href === 'https://byronthe123.github.io/Train-Scheduler/index.html' || window.location.href === 'https://byronthe123.github.io/Train-Scheduler/') {
         ui.start('#firebaseui-auth-container', uiConfig);
     }
 
     firebase.auth().onAuthStateChanged((user) => {
         if(!user) {
-            if(window.location.href === 'https://byronthe123.github.io/random_12347/main.html') {
+            if(window.location.href === 'https://byronthe123.github.io/Train-Scheduler/main.html') {
                 if(!signingOut) {
                     alert(`Please login to continue.`);
                 }
-                window.location.href = 'https://byronthe123.github.io/random_12347/index.html';
+                window.location.href = 'https://byronthe123.github.io/Train-Scheduler/index.html';
             }
         } else {
             $('#out_username').text(user.displayName);
