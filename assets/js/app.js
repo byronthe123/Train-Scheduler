@@ -110,7 +110,7 @@ const deleteFromDB = (id) => {
         console.log(snapshot);
         console.log(snapshot.ref.path.pieces_[0]);
         console.log(snapshot.val());
-        // console.log(snapshot.val().db_train.name);   
+        
         let sv = snapshot.val();
         // let train = objFromDBSnapshotVal(sv);
         console.log(sv.db_train.id);
