@@ -19,7 +19,7 @@ const db = firebase.database();
 
     // FirebaseUI config.
     var uiConfig = {
-        signInSuccessUrl: `https://byronthe123.github.io/random_12347/main.html`,
+        signInSuccessUrl: `https://byronthe123.github.io/Train-Scheduler/main.html`,
         signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -27,7 +27,7 @@ const db = firebase.database();
         ],
         'callbacks': {
             'signInSuccess': function(currentUser, credential, redirectUrl) {
-                window.location.assign('https://byronthe123.github.io/random_12347/main.html');
+                window.location.assign('https://byronthe123.github.io/Train-Scheduler/main.html');
                 return true;
             }
         }
@@ -60,7 +60,7 @@ const db = firebase.database();
         firebase.auth().signOut().then(function() {
             signingOut = true;
             alert('Signed out successfully');
-            window.location.href = `https://byronthe123.github.io/random_12347/index.html`;
+            window.location.href = `https://byronthe123.github.io/Train-Scheduler/index.html`;
         }, function(error) {
             // An error happened.
         });
