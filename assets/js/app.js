@@ -69,7 +69,7 @@ const db = firebase.database();
 
 //-----------------------------------------------------------------------------------------------
 
-//Fucntions:
+//Functions:
 const readFromDB = () => {
     $('#table_body').empty();
     db.ref().on('child_added', (snapshot) => {
@@ -102,6 +102,7 @@ const objFromDBSnapshotVal = (snapshotVal) => {
     return train;
 }
 
+//Delete Train:
 const deleteFromDB = (id) => {
     //https://stackoverflow.com/questions/40441625/firebase-remove-node-based-on-child-value
     db.ref().on('child_added', (snapshot) => {
@@ -122,6 +123,31 @@ const deleteFromDB = (id) => {
             }).catch(function(error){
                 console.log('Custom error');
             })
+        }
+    })
+}
+
+//Manually Update Train:
+const manuallyUpdate = (id) => {
+    //https://stackoverflow.com/questions/40441625/firebase-remove-node-based-on-child-value
+    db.ref().on('child_added', (snapshot) => {
+        let sv = snapshot.val();
+        // let train = objFromDBSnapshotVal(sv);
+        if(sv.db_train.id === id) {
+            console.log(`ID: ${sv.db_train.id} detected`);
+            // let remove = db.ref(snapshot.Ce.path.n[0]);
+            let updatedTrain = new Train(sv.db_train.name, sv.db_train.destination, sv.db_train.firstTrainTime, sv.db_train.frequency);
+            let updatedTr = $(`
+            <tr> 
+                <th scope="row">${updatedTrain.name}</th>
+                <td>${updatedTrain.destination}</td>
+                <td>${updatedTrain.frequency}</td>
+                <td><span class='transition'>${updatedTrain.nextArrival}</span></td>
+                <td><span class='transition'>${updatedTrain.minTillNexTrain}</span></td>
+                <td class="far fa-trash-alt" id='${updatedTrain.id}'></td>
+            </tr> 
+        `);
+         $(this).parent().replaceWith(updatedTr);
         }
     })
 }
@@ -203,6 +229,7 @@ $('#btn_submit').on('click', function(e){
 
 }); 
 
+//Click Delete Button:
 $(document).on('click', '.fa-trash-alt', function() {
     let id = ($(this).parent().prevObject[0].id);
     // console.log(p);
@@ -210,3 +237,10 @@ $(document).on('click', '.fa-trash-alt', function() {
     // $(this).parent().remove();
     readFromDB();
 });
+
+//Click Update Button:
+$(document).on('click', '.fa-trash-alt', function() {
+    let id = ($(this).parent().prevObject[0].id);
+    manuallyUpdate(id);
+});
+
