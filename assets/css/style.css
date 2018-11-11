@@ -1,0 +1,60 @@
+
+* {
+    /* border: 1px red solid; */
+}
+
+.index_body {
+    /* background: url('../images/train3.png') no-repeat center bottom fixed; 
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain; */
+}
+
+#img_user_photo {
+    height: 103px;
+    width: 100px;
+}
+
+#row_user_info {
+    border: 5px grey solid;
+}
+
+#signout:hover {
+    cursor: pointer;
+}
+
+.far.fa-trash-alt:hover {
+    cursor: pointer;
+}
+
+.transition {
+    animation: refresh 5s;
+}
+
+@keyframes refresh {
+    
+    0% {
+        color: blue;
+        font-weight: bold;
+        background-color: yellow;
+
+    }
+
+    50% {
+        /* color: black; */
+        font-weight: 600;
+    }
+
+    75% {
+        /* color: black; */
+        font-weight: 500;
+    }
+
+    100% {
+        color: black;
+        font-weight: normal;
+        background-color: none;
+    }
+
+}
